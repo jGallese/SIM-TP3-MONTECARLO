@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1440, 900)
+        MainWindow.resize(1440, 810)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.cantSimLabel = QtWidgets.QLabel(self.centralwidget)
@@ -144,6 +144,9 @@ class Ui_MainWindow(object):
         self.conclusionTextEdit = QtWidgets.QTextEdit(self.centralwidget)
         self.conclusionTextEdit.setGeometry(QtCore.QRect(890, 730, 351, 91))
         self.conclusionTextEdit.setObjectName("conclusionTextEdit")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(1150, 40, 121, 26))
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1440, 21))
@@ -207,6 +210,7 @@ class Ui_MainWindow(object):
         self.tiempoFuncLabel.setText(_translate("MainWindow", "Tiempo Total de Funcionamiento"))
         self.label_11.setText(_translate("MainWindow", "Maximo de Dias sin Averia"))
         self.cantAveriasLabel.setText(_translate("MainWindow", "Cantidad de Averias"))
+        self.pushButton.setText(_translate("MainWindow", "Generar"))
 
 
 if __name__ == "__main__":
