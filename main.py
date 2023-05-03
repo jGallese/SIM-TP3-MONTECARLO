@@ -36,33 +36,33 @@ class AppWin(QMainWindow, Ui_MainWindow):
         self.tableWidget.setItem(
             indice, 1, QtWidgets.QTableWidgetItem(str(RNDTiempo1)))
         self.tableWidget.setItem(
-            indice, 2, QtWidgets.QTableWidgetItem(str(tiempoFuncionando)))
+            indice, 2, QtWidgets.QTableWidgetItem(str(RNDTiempo2)))
         self.tableWidget.setItem(
-            indice, 3, QtWidgets.QTableWidgetItem(str(RNDDiaAveria)))
+            indice, 3, QtWidgets.QTableWidgetItem(str(tiempoFuncionando)))
         self.tableWidget.setItem(
-            indice, 4, QtWidgets.QTableWidgetItem(str(diaAveriaPreventivo)))
+            indice, 4, QtWidgets.QTableWidgetItem(str(RNDDiaAveria)))
         self.tableWidget.setItem(
-            indice, 5, QtWidgets.QTableWidgetItem(str(diaControlPreventivo)))
+            indice, 5, QtWidgets.QTableWidgetItem(str(diaAveriaPreventivo)))
         self.tableWidget.setItem(
-            indice, 6, QtWidgets.QTableWidgetItem(str(costoControlPreventivo)))
+            indice, 6, QtWidgets.QTableWidgetItem(str(diaControlPreventivo)))
         self.tableWidget.setItem(
-            indice, 7, QtWidgets.QTableWidgetItem(str(costoAveriaPrenventiva)))
+            indice, 7, QtWidgets.QTableWidgetItem(str(costoControlPreventivo)))
         self.tableWidget.setItem(
-            indice, 8, QtWidgets.QTableWidgetItem(str(costoTotalPreventivo)))
+            indice, 8, QtWidgets.QTableWidgetItem(str(costoAveriaPrenventiva)))
         self.tableWidget.setItem(
-            indice, 9, QtWidgets.QTableWidgetItem(str(costoPromedioPreventivo)))
+            indice, 9, QtWidgets.QTableWidgetItem(str(costoTotalPreventivo)))
         self.tableWidget.setItem(
-            indice, 10, QtWidgets.QTableWidgetItem(str(acumTiempoPreventivo)))
+            indice, 10, QtWidgets.QTableWidgetItem(str(costoPromedioPreventivo)))
         self.tableWidget.setItem(indice, 11, QtWidgets.QTableWidgetItem(
-            str(maxDiasSinAveriasPrventivo)))
+            str(acumTiempoPreventivo)))
         self.tableWidget.setItem(
-            indice, 12, QtWidgets.QTableWidgetItem(str(acumAveriasPreventiva)))
+            indice, 12, QtWidgets.QTableWidgetItem(str(maxDiasSinAveriasPrventivo)))
         self.tableWidget.setItem(
-            indice, 13, QtWidgets.QTableWidgetItem(str(RNDDiaAveria)))
+            indice, 13, QtWidgets.QTableWidgetItem(str(acumAveriasPreventiva)))
         self.tableWidget.setItem(
-            indice, 14, QtWidgets.QTableWidgetItem(str(diaAveriaCorrectivo)))
+            indice, 14, QtWidgets.QTableWidgetItem(str(RNDDiaAveria)))
         self.tableWidget.setItem(
-            indice, 15, QtWidgets.QTableWidgetItem(str(arreglo)))
+            indice, 15, QtWidgets.QTableWidgetItem(str(diaAveriaCorrectivo)))
         self.tableWidget.setItem(
             indice, 16, QtWidgets.QTableWidgetItem(str(costoAveriaCorrectivo)))
         self.tableWidget.setItem(
@@ -72,10 +72,8 @@ class AppWin(QMainWindow, Ui_MainWindow):
         self.tableWidget.setItem(
             indice, 19, QtWidgets.QTableWidgetItem(str(acumTiempoCorrectivo)))
         self.tableWidget.setItem(indice, 20, QtWidgets.QTableWidgetItem(
-            str(acumDiasSinAveriasCorrectivo)))
-        self.tableWidget.setItem(indice, 21, QtWidgets.QTableWidgetItem(
             str(maxDiasSinAveriaCorrectivo)))
-        self.tableWidget.setItem(indice, 22, QtWidgets.QTableWidgetItem(
+        self.tableWidget.setItem(indice, 21, QtWidgets.QTableWidgetItem(
             str(acumAveriasCorrectivo)))
 
     def simulacion(self):
@@ -94,6 +92,7 @@ class AppWin(QMainWindow, Ui_MainWindow):
             desvEstandar = float(self.desvEstLineEdit.text())
             costoRevision = int(self.costoRevisionLineEdit.text())
             costoArreglo = int(self.costoArregloLineEdit.text())
+            control = int(self.controlLineEdit.text())
 
             # inicializar variables
             reloj = 0
@@ -137,7 +136,7 @@ class AppWin(QMainWindow, Ui_MainWindow):
                     hayRNDGenerado = True
                     if (proxAveriaPreventivo < reloj or proxControl < reloj):
                         proxAveriaPreventivo = proxAveria
-                        proxControl = reloj + 6 - 1
+                        proxControl = reloj + control - 1
                         if (proxAveriaPreventivo <= proxControl):  # ver si hay control o averia
                             hayArreglo = True
                         else:
@@ -199,27 +198,27 @@ class AppWin(QMainWindow, Ui_MainWindow):
                 if (reloj >= primeraLineaAVer and reloj <= (primeraLineaAVer + 500)):
 
                     if (seControlo and not seArregloCorrectivo):
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, costoRevision, "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, costoRevision, "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                               maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, "", "", costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
                     elif (seControlo and seArregloCorrectivo):
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, costoRevision, "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, costoRevision, "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                               maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, 1, costoArreglo, costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
                     elif (seArregloCorrectivo and not seArregloPreventivo):
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo, maxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo, maxDiasSinAveriasPreventivo,
                                               acumAveriasPreventivo, proxAveriaCorrectivo, 1, costoArreglo, costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
                     elif (seArregloCorrectivo and seArregloPreventivo):
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", costoArreglo, costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", costoArreglo, costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                               maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, 1, costoArreglo, costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
                     elif (seArregloPreventivo and not seArregloCorrectivo):
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", costoArreglo, costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", costoArreglo, costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                               maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, "", "", costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
                     else:
-                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, 0, horasFunc, "", proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+                        self.cargarDatosTabla(reloj-primeraLineaAVer, reloj, rndHoras1, rndHoras2, horasFunc, "", proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                               maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, "", "", costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
         # hacer for con las simulaciones
 
         # mostrar ultima fila en la tabla
-            self.cargarDatosTabla(501, reloj, rndHoras1, 0, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
+            self.cargarDatosTabla(501, reloj, rndHoras1, rndHoras2, horasFunc, rndDiaAveria, proxAveriaPreventivo, proxControl, "", "", costoTotalPreventivo, costoPromedioPreventivo, acumTiempoPreventivo, acumMaxDiasSinAveriasPreventivo,
                                   maxDiasSinAveriasPreventivo, acumAveriasPreventivo, proxAveriaCorrectivo, "", "", costoTotalCorrectivo, costoPromedioCorrectivo, acumTiempoCorrectivo, acumMaxDiasSinAveriasCorrectivo, maxDiasSinAveriasCorrectivo, acumAveriasCorrectivo)
         # pasar resultados a cada textBox de cada mantenimiento
             self.costoPromPrevTextEdit.setPlainText(
@@ -241,12 +240,16 @@ class AppWin(QMainWindow, Ui_MainWindow):
                 str(acumAveriasCorrectivo))
 
         # elaborar conclusion
-            if (costoPromedioPreventivo <= costoPromedioCorrectivo):
+            if (abs(costoPromedioPreventivo - costoPromedioCorrectivo) < 20):
                 self.conclusionTextEdit.setText(
-                    "Conviene usar el método Preventivo ya que su costo es menor")
+                    "La diferencia de costos promedios es pequeña por lo que consideramos que las demas metricas de la preventiva")
             else:
-                self.conclusionTextEdit.setText(
-                    "Conviene usar el método Correctivo ya que su costo es menor")
+                if (costoPromedioPreventivo <= costoPromedioCorrectivo):
+                    self.conclusionTextEdit.setText(
+                        "Conviene usar el método Preventivo ya que su costo es menor")
+                else:
+                    self.conclusionTextEdit.setText(
+                        "El costo promedio del correctivo es menor, pero deberiamos analizar las otras metricas")
 
 
 if __name__ == '__main__':
