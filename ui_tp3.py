@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -144,10 +145,12 @@ class Ui_MainWindow(object):
         self.maxDiasPrevTextEdit.setGeometry(QtCore.QRect(390, 790, 104, 21))
         self.maxDiasPrevTextEdit.setObjectName("maxDiasPrevTextEdit")
         self.cantAveriasCorrTextEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.cantAveriasCorrTextEdit.setGeometry(QtCore.QRect(570, 820, 104, 21))
+        self.cantAveriasCorrTextEdit.setGeometry(
+            QtCore.QRect(570, 820, 104, 21))
         self.cantAveriasCorrTextEdit.setObjectName("cantAveriasCorrTextEdit")
         self.cantAveriasPrevTextEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.cantAveriasPrevTextEdit.setGeometry(QtCore.QRect(390, 820, 104, 21))
+        self.cantAveriasPrevTextEdit.setGeometry(
+            QtCore.QRect(390, 820, 104, 21))
         self.cantAveriasPrevTextEdit.setObjectName("cantAveriasPrevTextEdit")
         self.conclusionTextEdit = QtWidgets.QTextEdit(self.centralwidget)
         self.conclusionTextEdit.setGeometry(QtCore.QRect(890, 730, 351, 91))
@@ -171,8 +174,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.cantSimLabel.setText(_translate("MainWindow", "Cantidad de Simulaciones"))
-        self.label_2.setText(_translate("MainWindow", "Primera linea de resultado (Desde)"))
+        self.cantSimLabel.setText(_translate(
+            "MainWindow", "Cantidad de Simulaciones"))
+        self.label_2.setText(_translate(
+            "MainWindow", "Primera linea de resultado (Desde)"))
         self.label_3.setText(_translate("MainWindow", "Media"))
         self.label_4.setText(_translate("MainWindow", "Desv.  Estandar"))
         self.label_5.setText(_translate("MainWindow", "Costo de Revision"))
@@ -222,12 +227,18 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(21)
         item.setText(_translate("MainWindow", "Acum.  Averias Correct."))
 
-        self.label_7.setText(_translate("MainWindow", "Mantenimiento Preventivo"))
-        self.label_8.setText(_translate("MainWindow", "Mantenimiento Correctivo"))
-        self.label_9.setText(_translate("MainWindow", "Costo Promedio por Dia"))
-        self.tiempoFuncLabel.setText(_translate("MainWindow", "Tiempo Total de Funcionamiento"))
-        self.label_11.setText(_translate("MainWindow", "Maximo de Dias sin Averia"))
-        self.cantAveriasLabel.setText(_translate("MainWindow", "Cantidad de Averias"))
+        self.label_7.setText(_translate(
+            "MainWindow", "Mantenimiento Preventivo"))
+        self.label_8.setText(_translate(
+            "MainWindow", "Mantenimiento Correctivo"))
+        self.label_9.setText(_translate(
+            "MainWindow", "Costo Promedio por Dia"))
+        self.tiempoFuncLabel.setText(_translate(
+            "MainWindow", "Tiempo Total de Funcionamiento"))
+        self.label_11.setText(_translate(
+            "MainWindow", "Maximo de Dias sin Averia"))
+        self.cantAveriasLabel.setText(_translate(
+            "MainWindow", "Cantidad de Averias"))
         self.pushButton.setText(_translate("MainWindow", "Generar"))
 
     def simulacion(self):
