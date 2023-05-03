@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -56,7 +55,7 @@ class Ui_MainWindow(object):
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(20, 110, 1401, 581))
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(18)
+        self.tableWidget.setColumnCount(22)
         self.tableWidget.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
@@ -94,6 +93,15 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderItem(16, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(17, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(18, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(19, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(20, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(21, item)
+
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(360, 700, 161, 16))
         self.label_7.setObjectName("label_7")
@@ -147,6 +155,7 @@ class Ui_MainWindow(object):
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(1150, 40, 121, 26))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.simulacion)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1440, 21))
@@ -185,25 +194,34 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Costo Averia Prevent."))
         item = self.tableWidget.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "Costo Prom.  Prevent."))
+        item.setText(_translate("MainWindow", "Costo Total Prevent."))
         item = self.tableWidget.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "Acum.  Tiempo Prevent."))
+        item.setText(_translate("MainWindow", "Costo Prom.  Prevent."))
         item = self.tableWidget.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "Acum.  Averias Prevent."))
+        item.setText(_translate("MainWindow", "Acum.  Tiempo Prevent."))
         item = self.tableWidget.horizontalHeaderItem(11)
-        item.setText(_translate("MainWindow", "RND Dia Averia"))
+        item.setText(_translate("MainWindow", "Max Dias Sin Averias Prevent."))
         item = self.tableWidget.horizontalHeaderItem(12)
-        item.setText(_translate("MainWindow", "Dia Averia"))
+        item.setText(_translate("MainWindow", "Acum.  Averias Prevent."))
         item = self.tableWidget.horizontalHeaderItem(13)
-        item.setText(_translate("MainWindow", "Arreglo"))
+        item.setText(_translate("MainWindow", "RND Dia Averia"))
         item = self.tableWidget.horizontalHeaderItem(14)
-        item.setText(_translate("MainWindow", "Costo Averia Correct."))
+        item.setText(_translate("MainWindow", "Dia Averia"))
         item = self.tableWidget.horizontalHeaderItem(15)
-        item.setText(_translate("MainWindow", "Costo Total Correct."))
+        item.setText(_translate("MainWindow", "Arreglo"))
         item = self.tableWidget.horizontalHeaderItem(16)
-        item.setText(_translate("MainWindow", "Acum.  Tiempo Correct."))
+        item.setText(_translate("MainWindow", "Costo Averia Correct."))
         item = self.tableWidget.horizontalHeaderItem(17)
+        item.setText(_translate("MainWindow", "Costo Total Correct."))
+        item = self.tableWidget.horizontalHeaderItem(18)
+        item.setText(_translate("MainWindow", "Costo Prom.  Correct."))
+        item = self.tableWidget.horizontalHeaderItem(19)
+        item.setText(_translate("MainWindow", "Acum.  Tiempo Correct."))
+        item = self.tableWidget.horizontalHeaderItem(20)
+        item.setText(_translate("MainWindow", "Max Dias Sin Averias Correct."))
+        item = self.tableWidget.horizontalHeaderItem(21)
         item.setText(_translate("MainWindow", "Acum.  Averias Correct."))
+
         self.label_7.setText(_translate("MainWindow", "Mantenimiento Preventivo"))
         self.label_8.setText(_translate("MainWindow", "Mantenimiento Correctivo"))
         self.label_9.setText(_translate("MainWindow", "Costo Promedio por Dia"))
@@ -211,6 +229,9 @@ class Ui_MainWindow(object):
         self.label_11.setText(_translate("MainWindow", "Maximo de Dias sin Averia"))
         self.cantAveriasLabel.setText(_translate("MainWindow", "Cantidad de Averias"))
         self.pushButton.setText(_translate("MainWindow", "Generar"))
+
+    def simulacion(self):
+        pass
 
 
 if __name__ == "__main__":
