@@ -114,7 +114,7 @@ class AppWin(QMainWindow, Ui_MainWindow):
             hayRNDGenerado = False
             hayArreglo = False
             hayControl = False
-            ultimoControl = 0
+            proxControl = 0
 
             for i in range(cantSimulaciones):
                 # hacer todos los calculos
@@ -134,13 +134,12 @@ class AppWin(QMainWindow, Ui_MainWindow):
                     rndDiaAveria = random.random()
                     diaAveria = self.getDiaAveria(rndDiaAveria)
                     proxAveria = reloj + diaAveria - 1
-                    proxControl = reloj + 6 - 1
                     hayRNDGenerado = True
-                    if (proxAveriaPreventivo < reloj or ultimoControl < reloj):
+                    if (proxAveriaPreventivo < reloj or proxControl < reloj):
                         proxAveriaPreventivo = proxAveria
+                        proxControl = reloj + 6 - 1
                         if (proxAveriaPreventivo <= proxControl):  # ver si hay control o averia
                             hayArreglo = True
-                            ultimoControl = proxAveriaCorrectivo
                         else:
                             hayControl = True
 
@@ -172,7 +171,7 @@ class AppWin(QMainWindow, Ui_MainWindow):
                     hayRNDGenerado = False
                     hayControl = False
                     seControlo = True
-                    ultimoControl = proxControl
+                    #ultimoControl = proxControl
                 else:
                     #costoPromedioPreventivo = costoTotalPreventivo / reloj
                     acumTiempoPreventivo += horasFunc
